@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let totalTasks = 0;
     let completedTasks = 0;
     
-    // Función para renderizar las tareas
+    // Función para mostrar las tareas
     function renderTasks() {
         taskList.innerHTML = '';
         totalTasks = tasks.length;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
     
-    // Función para añadir una nueva tarea
+    // Función para agregar una nueva tarea
     function addTask() {
         const taskText = taskInput.value.trim();
         if (taskText) {
@@ -94,13 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Función para marcar tarea como completada/pendiente
+    // Función para marcar tarea como completada o pendiente
     function toggleTaskComplete(index) {
         tasks[index].completed = !tasks[index].completed;
         renderTasks();
     }
-    
-    // Event listeners
+
     addTaskBtn.addEventListener('click', addTask);
     taskInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -108,6 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Renderizar tareas al cargar la página
+    // Mostrar tareas al cargar la página
     renderTasks();
 });
