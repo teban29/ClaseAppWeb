@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let totalTasks = 0;
     let completedTasks = 0;
     
-    // Función para mostrar las tareas
+    // Función para renderizar las tareas
     function renderTasks() {
         taskList.innerHTML = '';
         totalTasks = tasks.length;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
     
-    // Función para agregar una nueva tarea
+    // Función para añadir una nueva tarea
     function addTask() {
         const taskText = taskInput.value.trim();
         if (taskText) {
@@ -75,5 +75,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Función para editar una tarea
+    function editTask(index) {
+        const newText = prompt('Editar tarea:', tasks[index].text);
+        if (newText !== null && newText.trim() !== '') {
+            tasks[index].text = newText.trim();
+            renderTasks();
+            // Aquí iría el commit para "Editar tarea"
+            console.log('Commit: Editar tarea funcionalidad implementada');
+        }
+    }
+    
+    // Función para eliminar una tarea
+    function deleteTask(index) {
+        if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+            tasks.splice(index, 1);
+            renderTasks();
+        }
+    }
+    
+    // Función para marcar tarea como completada/pendiente
+    function toggleTaskComplete(index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+    }
+    
+    // Event listeners
+    addTaskBtn.addEventListener('click', addTask);
+    taskInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addTask();
+        }
+    });
+    
+    // Renderizar tareas al cargar la página
     renderTasks();
 });
